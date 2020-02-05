@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +34,7 @@ public class CategoriaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> cadastrar(@RequestBody Categoria categoria, HttpServletResponse response) {	
+	public ResponseEntity<Categoria> cadastrar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {	
 		Categoria c = categoriaRepository.save(categoria);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
