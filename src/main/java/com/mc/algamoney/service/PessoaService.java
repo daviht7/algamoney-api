@@ -30,6 +30,19 @@ public class PessoaService {
 		return pessoaSalva;
 		
 	}
+
+	public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
+		Optional<Pessoa> p = pessoaRepository.findById(codigo);
+		
+		if(!p.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		
+		p.get().setAtivo(ativo);
+		
+		pessoaRepository.save(p.get());
+		
+	}
 	
 
 }
