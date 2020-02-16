@@ -3,6 +3,7 @@ package com.mc.algamoney.exceptionhandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
 	}
 	
-	@ExceptionHandler({ EmptyResultDataAccessException.class  })
+	@ExceptionHandler({ EmptyResultDataAccessException.class,NoSuchElementException.class  })
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
 		
 		String mensagemUsuario = messageSource.getMessage("recurso.nao-encontrado",null,LocaleContextHolder.getLocale());
